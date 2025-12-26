@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Attendance</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="container">
+<div class="card">
+<h2>Add Member</h2>
+<form method="post" action="/add_member">
+<input name="new_member" placeholder="Member Name" required>
+<button>Add</button>
+</form>
+</div>
+
+{% for m in members %}
+<div class="card">
+<h3>{{ m }}</h3>
+<form method="post">
+<input type="hidden" name="member" value="{{ m }}">
+<input type="date" name="date" required>
+<label><input type="checkbox" name="present"> Present</label>
+<button>Save</button>
+</form>
+<a class="link-btn" href="/member/{{ m }}">View</a>
+<a class="link-btn" href="/download/{{ m }}">Download PDF</a>
+</div>
+{% endfor %}
+
+<a class="link-btn logout" href="/logout">Logout</a>
+</div>
+</body>
+</html>

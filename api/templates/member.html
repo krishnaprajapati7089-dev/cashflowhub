@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Member</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #f2f6f9;
+}
+
+.container {
+    max-width: 420px;
+    margin: auto;
+    padding: 15px;
+}
+
+.card {
+    background: #ffffff;
+    padding: 16px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+h2, h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #1abc9c;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #16a085;
+}
+
+.link-btn {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    margin-top: 8px;
+    background: #3498db;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.logout {
+    background: #e74c3c;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card">
+        <h2>{{ member }}</h2>
+        <p>Days Present: <b>{{ days }}</b></p>
+        <p>Total Salary: <b>₹{{ earned }}</b></p>
+        <p>Paid: <b>₹{{ paid }}</b></p>
+        <p>Remaining: <b>₹{{ remaining }}</b></p>
+    </div>
+
+    <div class="card">
+        <h3>Add Payment</h3>
+        <form method="post" action="/add_payment">
+            <input type="hidden" name="member" value="{{ member }}">
+            <input type="number" name="amount" placeholder="Amount" required>
+            <button>Add Payment</button>
+        </form>
+    </div>
+
+    <a href="/attendance" class="link-btn">⬅ Back</a>
+
+</div>
+
+</body>
+</html>
